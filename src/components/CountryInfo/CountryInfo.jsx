@@ -1,18 +1,19 @@
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+// import WeatherInfo from "../weather/WeatherInfo";
 
 const CountryInfo = ({ countries }) => {
   return (
-    <div>
+    <div className="p-1">
       <div>
-        <h2 className="text-white">Country Info:</h2>
+        <h2 className="text-white text-2xl">Country Info:</h2>
       </div>
-      <div className="text-white flex justify-center items-center flex-col">
+      <div className="text-white">
         {countries.map((country, index) => (
           <div key={index} className="mt-5">
-            <h2>{country.name?.common}</h2>
-            <p>Official Name: {country.name?.official ?? "N/A"}</p>
+            <h2 className="text-2xl">{country.name?.common}</h2>
+            <h3>Official Name: {country.name?.official ?? "N/A"}</h3>
             <p>Native Name: {country.name?.nativeName?.common ?? "N/A"}</p>
             <p>
               ISO Codes: {country.cca2 ?? "N/A"}, {country.cca3 ?? "N/A"},{" "}
@@ -66,7 +67,7 @@ const CountryInfo = ({ countries }) => {
               <img
                 src={country.flags?.svg}
                 alt={country.name?.common}
-                className="w-[100px] h-[50px]"
+                className="w-[300px] h-[200px]"
               />
             </p>
             <p>Population: {country.population ?? "N/A"}</p>
@@ -100,7 +101,7 @@ const CountryInfo = ({ countries }) => {
               <img
                 src={country.coatOfArms?.svg}
                 alt={`${country.name?.common} Coat of Arms`}
-                className="w-[100px] h-[100px]"
+                className="w-[300px] h-[200px]"
               />
             </p>
             <p>First Day of the Week: {country.startOfWeek ?? "N/A"}</p>
@@ -109,6 +110,7 @@ const CountryInfo = ({ countries }) => {
           </div>
         ))}
       </div>
+      <div>{/* <WeatherInfo /> */}</div>
     </div>
   );
 };
@@ -125,10 +127,7 @@ function CountriesErrorBoundary(props) {
           <h2 className="felx justify-center items-center mt-[6rem] text-white text-2xl">
             Oops... this countries info can not be retrieved at the moment.
           </h2>
-          <Link
-            to="/"
-            className="text-white flex justify-center mt-2 text-purple-400"
-          >
+          <Link to="/" className=" flex justify-center mt-2 text-purple-400">
             Refresh
           </Link>
         </div>

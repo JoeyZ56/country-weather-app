@@ -11,15 +11,15 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-center items-center flex-col">
+    <div className="">
+      <div className="flex justify-between p-1">
         <h2 className="text-white text-4xl">Weathers & Countries</h2>
-        <div className="mt-3">
+        <div className="m-2">
           <SearchBar onSearch={handleSearch} />
         </div>
-        <div>
-          <CountryInfo countries={countries} />
-        </div>
+      </div>
+      <div className="">
+        <CountryInfo countries={countries} />
       </div>
     </div>
   );
