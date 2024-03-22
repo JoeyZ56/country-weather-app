@@ -27,6 +27,12 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
+  const handleReset = () => {
+    setSearch("");
+    setSearchClicked(false);
+    onSearch([]);
+  };
+
   //Props validation
   SearchBar.propTypes = {
     onSearch: PropTypes.func.isRequired,
@@ -38,25 +44,10 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        className="border-2 border-gray-300 p-2 rounded-md mt-2"
       />
-      <button
-        onClick={handleSearch}
-        className="bg-red-500 w-[100px] h-[30px] flex justify-center items-center text-white rounded-md mt-2"
-      >
-        Search
-      </button>
-      {searchClicked && (
-        <button
-          onClick={() => {
-            setSearch("");
-            setSearchClicked(false);
-          }}
-          className="bg-gray-500 w-[100px] h-[30px] flex justify-center items-center text-white rounded-md mt-2"
-        >
-          {" "}
-          Reset
-        </button>
-      )}
+      <button onClick={handleSearch}>Search</button>
+      {searchClicked && <button onClick={handleReset}> Reset</button>}
     </div>
   );
 };

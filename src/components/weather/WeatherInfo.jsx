@@ -1,48 +1,72 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const WeatherInfo = () => {
+const WeatherInfo = ({ latitude, longitude }) => {
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
+      if (!latitude || !longitude) return;
+
       try {
-        const res = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m"
-        );
-        const data = await res.json();
-        setWeatherData(data.hourly); // Setting only the hourly data for simplicity
+        const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+        const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setWeatherData(data.current);
       } catch (error) {
-        console.log({ error: "Error failed to find weather" });
+        console.error("Error fetching weather data:", error);
       }
     };
 
     fetchWeather();
-  }, []);
+  }, [latitude, longitude]);
 
   return (
-    <div className="text-white">
-      <h2>Weather Info</h2>
-      {weatherData &&
-        weatherData.time.map((time, index) => (
-          <div key={index}>
-            <p>Time: {time}</p>
-            <p>Temperature: {weatherData.temperature_2m[index]}°C</p>
-            <p>Time Zone: {weatherData.timezone}</p>
-            <p>Elevation: {weatherData.elevation}</p>
+    <>
+      <div>
+        <h2 className="mt-4">Weather Info</h2>
+        {weatherData && (
+          <div className="flex-container">
+            <section>
+              <img
+                className="w-[58px] h-[58px] mr-2"
+                src={weatherData.condition.icon}
+                alt="Weather Icon"
+              />
+              <p>
+                Temperature: {weatherData.temp_c}°C ({weatherData.temp_f}°F)
+              </p>
+              <p>
+                Feels Like: {weatherData.feelslike_c}°C (
+                {weatherData.feelslike_f}
+                °F)
+              </p>
+              <p>Cloud: {weatherData.cloud}%</p>
+              <p>
+                Wind: {weatherData.wind_kph} kph ({weatherData.wind_mph} mph)
+                from {weatherData.wind_dir}
+              </p>
+            </section>
+            <section>
+              <p>Condition: {weatherData.condition.text}</p>
+              <p>Humidity: {weatherData.humidity}%</p>
+              <p>Visibility: {weatherData.vis_km} km</p>
+              <p>Pressure: {weatherData.pressure_mb} mb</p>
+
+              <p>UV Index: {weatherData.uv}</p>
+              <p>Last Updated: {weatherData.last_updated}</p>
+            </section>
           </div>
-        ))}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
 WeatherInfo.propTypes = {
-  weatherData: PropTypes.shape({
-    time: PropTypes.array.isRequired,
-    temperature_2m: PropTypes.array.isRequired,
-    timezone: PropTypes.string.isRequired,
-    elevation: PropTypes.number.isRequired,
-  }),
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
 };
 
 export default WeatherInfo;
