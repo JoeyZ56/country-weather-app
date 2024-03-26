@@ -125,6 +125,7 @@ button:hover {
 /* Media Queries */
 @media (max-width: 768px) {
   body {
+    background-image: url("https://wallpaperaccess.com/full/235539.jpg");
   }
 
   h1 {
