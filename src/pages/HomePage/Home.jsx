@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SearchBar from "../../components/Searchbar/SearchBar";
-import CountryInfo from "../../components/CountryInfo/CountryInfo";
-import WeatherInfo from "../../components/weather/WeatherInfo";
+import SearchBar from "../../components/Search/SearchBar";
+import CountryInfo from "../../components/Countries/CountryInfo";
+import WeatherInfo from "../../components/Weather/WeatherInfo";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
