@@ -32,7 +32,7 @@ const Home = () => {
         </div>
       </div>
       <div className="titleDisc">
-        <h4 className="text-white text-2xl md:text-2xl lg:text-4xl">
+        <h4>
           <span>Explore and discover comprehensive insights</span>
           <br />
           <span>on countries and their weather conditions.</span>
