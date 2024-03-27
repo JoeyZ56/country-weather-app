@@ -37,7 +37,11 @@ const CountryInfo = ({ countries }) => {
                   ))}
                 </p>
               )}
-              <img src={country.flags?.svg} alt={country.name?.common} />
+              <img
+                src={country.flags?.svg}
+                alt={country.name?.common}
+                className="country-img"
+              />
             </section>
 
             {/* Time & Location Section */}
@@ -92,6 +96,7 @@ const CountryInfo = ({ countries }) => {
                 <img
                   src={country.coatOfArms?.svg}
                   alt={`${country.name?.common} Coat of Arms`}
+                  className="country-img"
                 />
               </p>
               {country.languages && Array.isArray(country.languages) && (
