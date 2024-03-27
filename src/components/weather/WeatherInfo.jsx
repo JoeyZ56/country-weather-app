@@ -25,7 +25,7 @@ const WeatherInfo = ({ latitude, longitude }) => {
   return (
     <>
       <div>
-        <h2 className="mt-4">Weather Info</h2>
+        <h1 className="mt-4">Weather</h1>
         {weatherData && (
           <div className="flex-container">
             <section>

@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
       <div className="flex justify-between p-1">
-        <h2>Weathers & Countries</h2>
+        <h1 className="ml-2">Weathers & Countries</h1>
         <div className="m-2">
           <SearchBar onSearch={handleSearch} />
         </div>

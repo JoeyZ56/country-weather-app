@@ -9,12 +9,12 @@ const CountryInfo = ({ countries }) => {
     <>
       {arrCountries.map((country, index) => (
         <div key={index} className="p-1 text-white mt-5">
-          <h1>Country Infromation</h1>
+          <h1>{country.name?.common}</h1>
           <div className="flex flex-wrap -mx-3">
             {/* General Info Section */}
             <section>
               <h2>General Info</h2>
-              <h3>{country.name?.common}</h3>
+              <h3>Country Name: {country.name?.common}</h3>
 
               <p>Official Name: {country.name?.official ?? "N/A"}</p>
               <p>
