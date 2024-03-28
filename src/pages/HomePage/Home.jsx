@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBar from "../../components/Search/SearchBar.jsx";
 import CountryInfo from "../../components/Countries/CountryInfo.jsx";
-import WeatherInfo from "../../components/Weather/WeatherInfo.jsx";
+import WeatherInfo from "../../components/LocalWeather/WeatherInfo.jsx";
 import Carousel from "../../components/Carousel/Carousel.jsx";
 
 const Home = () => {
